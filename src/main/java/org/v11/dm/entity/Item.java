@@ -1,6 +1,6 @@
 package org.v11.dm.entity;
 
-import org.v11.dm.tool.Tool;
+import org.v11.dm.tool.TimeTool;
 
 /**
  * item 信息

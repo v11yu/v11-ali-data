@@ -28,11 +28,10 @@ public class InputToolImpl implements InputTool{
 				Record r = Record.generate(str);
 				if(r!=null && r.getTime().after(from) && r.getTime().before(to)){
 					records.add(r);
-
 				}
-//				System.out.println(cnt+" "+r);
-//				sleep();
+				if(cnt % 1000 == 0) System.out.println("read.."+cnt);
 			}
+			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

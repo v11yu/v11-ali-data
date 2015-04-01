@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.v11.dm.tool.Tool;
+import org.v11.dm.tool.TimeTool;
 
 
 
@@ -38,7 +38,7 @@ public class Record {
 		r.op = Integer.parseInt(v[2]);
 		r.geo = v[3];
 		r.ity = Long.parseLong(v[4]);
-		r.time = Tool.getTime(v[5]);
+		r.time = TimeTool.getTime(v[5]);
 		return r;
 	}
 
