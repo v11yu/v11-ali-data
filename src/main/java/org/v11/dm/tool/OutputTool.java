@@ -43,6 +43,24 @@ public class OutputTool {
 	 * 写入预测结果
 	 * @param res 
 	 * @param filepath 写入的路径
+	 */
+	public void output(String res,String filepath){
+		
+		File file = new File(filepath);
+		try {
+			BufferedWriter w = new BufferedWriter(new FileWriter(file,true));
+			w.write(res);
+			w.newLine();
+			w.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 写入预测结果
+	 * @param res 
+	 * @param filepath 写入的路径
 	 * @param v 权重阈值
 	 */
 	public void output(Map<String, Double> res,String filepath,Double v){

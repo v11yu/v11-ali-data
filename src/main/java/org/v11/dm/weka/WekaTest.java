@@ -2,6 +2,7 @@ package org.v11.dm.weka;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.evaluation.NominalPrediction;
@@ -9,6 +10,7 @@ import weka.classifiers.rules.DecisionTable;
 import weka.classifiers.rules.PART;
 import weka.classifiers.trees.DecisionStump;
 import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
 import weka.core.FastVector;
 import weka.core.Instances;
 /**
@@ -67,7 +69,7 @@ public class WekaTest {
 	}
  
 	public static void main(String[] args) throws Exception {
-		BufferedReader datafile = readDataFile("D://weka//data//weather.numeric.arff");
+		BufferedReader datafile = readDataFile("D://weka//data//breast-cancer.arff");
  
 		Instances data = new Instances(datafile);
 		data.setClassIndex(data.numAttributes() - 1);
@@ -78,13 +80,18 @@ public class WekaTest {
 		// Separate split into training and testing arrays
 		Instances[] trainingSplits = split[0];
 		Instances[] testingSplits = split[1];
- 
+		
+		int len = 0;
+		for(int i=0;i<testingSplits.length;i++){
+			System.out.println(testingSplits[i].numInstances());
+		}
 		// Use a set of classifiers
 		Classifier[] models = { 
 				new J48(), // a decision tree
 				new PART(), 
 				new DecisionTable(),//decision table majority classifier
-				new DecisionStump() //one-level decision tree
+				new DecisionStump(), //one-level decision tree
+				new RandomForest()
 		};
  
 		// Run for each model

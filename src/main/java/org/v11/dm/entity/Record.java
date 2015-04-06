@@ -4,7 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.TimeTool;
+
+import weka.core.pmml.Constant;
 
 
 
@@ -14,15 +17,17 @@ import org.v11.dm.tool.TimeTool;
  * @author v11
  */
 public class Record {
-	Long uid;
-	Long tid;
+	public Long uid;
+	public Long tid;
 	/** 操作类型,包括浏览、收藏、加购物车、购买，对应取值分别是1、2、3、4。*/
-	int op;
+	public int op;
 	/**　用前缀来判断地理位置 */
-	String geo;
+	public String geo;
 	/** 商品类型*/
-	Long ity;
-	Date time;
+	public Long ity;
+	public Date time;
+	/** 距离最后一天多少小时 */
+	public int dis;
 	
 	public Record(){}
 	public static Record generate(String str){
@@ -35,10 +40,11 @@ public class Record {
 		for(int i=0;i<v.length;i++) v[i] = v[i].trim();
 		r.uid = Long.parseLong(v[0]);
 		r.tid = Long.parseLong(v[1]);
-		r.op = Integer.parseInt(v[2]);
+		r.op = Integer.parseInt(v[2]) - 1;
 		r.geo = v[3];
 		r.ity = Long.parseLong(v[4]);
 		r.time = TimeTool.getTime(v[5]);
+		r.dis = (int) ((TimeTool.getTime(Contants.last_time).getTime() - r.time.getTime())/1000/3600);
 		return r;
 	}
 
