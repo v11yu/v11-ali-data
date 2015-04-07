@@ -16,7 +16,7 @@ import weka.core.pmml.Constant;
  * 
  * @author v11
  */
-public class Record {
+public class Record implements Comparable<Record>{
 	public Long uid;
 	public Long tid;
 	/** 操作类型,包括浏览、收藏、加购物车、购买，对应取值分别是1、2、3、4。*/
@@ -50,8 +50,7 @@ public class Record {
 
 	@Override
 	public String toString() {
-		return "Record [uid=" + uid + ", tid=" + tid + ", op=" + op + ", geo="
-				+ geo + ", ity=" + ity + ", time=" + time + "]";
+		return uid+","+tid+","+op+","+geo+","+ity+","+dis;
 	}
 
 	public Long getUid() {
@@ -89,6 +88,13 @@ public class Record {
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}
+	@Override
+	public int compareTo(Record o) {
+		// TODO Auto-generated method stub
+		if(this.uid>o.uid) return 1;
+		else if(this.uid<o.uid) return -1;
+		return 0;
 	}
 	
 }

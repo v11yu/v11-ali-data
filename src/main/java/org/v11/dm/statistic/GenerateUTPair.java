@@ -13,16 +13,16 @@ import org.v11.dm.entity.*;
 import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.InputTool;
 import org.v11.dm.tool.InputToolImpl;
-import org.v11.dm.tool.OutputTool;
+import org.v11.dm.tool.OutputToolImpl;
 import org.v11.dm.tool.TimeTool;
 
 public class GenerateUTPair {
-	
+
 	Map<String, UTPair> mp = new HashMap<String,UTPair>();
 	Set<String> clas = new HashSet<String>();
 	Date begin = TimeTool.getTime(Contants.last_time);
 	Date end = TimeTool.getTime(Contants.class_time);
-	void read(){
+	void read(int T,int mod){
 		File file = new File(Contants.record_filepath);
 		List<Record> records = new ArrayList<Record>();
 		try {
@@ -33,6 +33,7 @@ public class GenerateUTPair {
 			while((str=reader.readLine())!=null){
 				if(cnt++ == 0) continue;
 				Record r = Record.generate(str);
+				if(r==null || r.uid%mod !=T) continue;
 				String utStr = r.uid+"#"+r.tid;
 				if(mp.containsKey(utStr)) {
 					utp = mp.get(utStr);
@@ -101,26 +102,32 @@ public class GenerateUTPair {
 			}
 		}
 	}
-	void output(){
-		OutputTool ot = new OutputTool();
+	void output(int mod,int T){
+		OutputToolImpl ot = new OutputToolImpl();
 		String filepath =  Contants.write_filepath;
 		Date d = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		String tim = format.format(d);
-		filepath += tim+".csv";
+		filepath += tim+"mod"+mod+"T"+T+".csv";
 		int cnt = 0;
 		System.out.println(mp.size());
 		for(Entry<String, UTPair> en: mp.entrySet()){
 			cnt++;
-			System.out.println(en.getValue());
+			//System.out.println(en.getValue());
 			ot.output(en.getKey()+','+en.getValue(),filepath);
+			if(cnt % 10000 == 0) System.out.println("write.."+cnt);
 		}
 		System.out.println(cnt);
 	}
 	void work(){
-		read();
-		sta();
-		output();
+		int N = 5;
+		for(int i=0;i<N;i++){
+			mp.clear();
+			clas.clear();
+			read(i,N);
+			sta();
+			output(N,i);
+		}
 	}
 	public static void main(String[] args) {
 		GenerateUTPair g = new GenerateUTPair();

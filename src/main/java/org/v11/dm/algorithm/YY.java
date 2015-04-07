@@ -10,12 +10,12 @@ import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.F1Tools;
 import org.v11.dm.tool.InputTool;
 import org.v11.dm.tool.InputToolImpl;
-import org.v11.dm.tool.OutputTool;
+import org.v11.dm.tool.OutputToolImpl;
 import org.v11.dm.tool.TimeTool;
 
 public class YY {
 	InputTool it = new InputToolImpl();
-	OutputTool ot = new OutputTool();
+	OutputToolImpl ot = new OutputToolImpl();
 	List<Record> train = it.getRecord(Contants.record_filepath, new Date(0),
 			TimeTool.getTime("2014-12-16 23"));
 	List<Record> test = it.getRecord(Contants.record_filepath,

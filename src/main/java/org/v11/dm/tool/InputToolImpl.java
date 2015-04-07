@@ -174,4 +174,32 @@ public class InputToolImpl implements InputTool{
 		}
 		return mp;
 	}
+
+	@Override
+	public List<Record> getRecordALL(String filepath) {
+		File file = new File(filepath);
+		List<Record> records = new ArrayList<Record>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String str ;
+			int cnt = 0;
+			while((str=reader.readLine())!=null){
+				if(cnt++ == 0) continue;
+				Record r = Record.generate(str);
+				if(r!=null){
+					r.time = null;
+					records.add(r);
+				}
+				if(cnt % 1000 == 0) System.out.println("read.."+cnt);
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
+	}
 }

@@ -9,6 +9,7 @@ import org.v11.dm.entity.Item;
 import org.v11.dm.entity.Record;
 
 public interface InputTool {
+	List<Record> getRecordALL(String filepath);
 	/**
 	 * 从csv中读取record数据,区间[from,to]，包含左右端点
 	 * @param filepath 文件路径
