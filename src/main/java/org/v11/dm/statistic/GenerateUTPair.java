@@ -28,11 +28,13 @@ public class GenerateUTPair {
 	static Date lastTime = TimeTool.getTime(Contants.time18);
 	int leftDistance;
 	int rightDistance;
-	public GenerateUTPair(Date bg,Date ed){
+	int TT;
+	public GenerateUTPair(Date bg,Date ed,int TT){
 		this.begin = bg;
 		this.end = ed;
 		this.leftDistance = (int) ((lastTime.getTime() - begin.getTime())/1000/3600);
 		this.rightDistance = (int) ((lastTime.getTime() - end.getTime())/1000/3600);
+		this.TT = TT;
 	}
 	void read(int T,int mod){
 		File file = new File(Contants.read_filepath+Contants.record_filename);
@@ -59,8 +61,10 @@ public class GenerateUTPair {
 				if(r!=null && r.dis<= leftDistance && r.dis >= rightDistance
 						&&r.op == 3){
 					utp.clas = 1;
+					//System.out.println(r.dis-24);
 				}
 				if(r!=null && r.dis>=leftDistance){
+					r.dis -= TT;
 					if(r.dis <3){
 						utp.d3[r.op]++;
 					}else if(r.dis<5){
@@ -123,7 +127,7 @@ public class GenerateUTPair {
 		filepath += T+".csv";
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter(filepath, true));
+			out = new BufferedWriter(new FileWriter(filepath));
 			int cnt = 0;
 			System.out.println(mp.size());
 			for (Entry<String, UTPair> en : mp.entrySet()) {
@@ -154,11 +158,11 @@ public class GenerateUTPair {
 			output(N,i);
 		}
 	}
-	public static void main(String[] args) {
-		Date begin = TimeTool.getTime(Contants.time18);
-		Date end = TimeTool.getTime(Contants.time19);
-		String f1 = "validata.csv";
-		GenerateUTPair g = new GenerateUTPair(begin,end);
+	public static void generateTesting(){
+		Date begin = TimeTool.getTime(Contants.time16);
+		Date end = TimeTool.getTime(Contants.time17);
+		String f1 = "testing.csv";
+		GenerateUTPair g = new GenerateUTPair(begin,end,48);
 		g.work();
 		MergeData mg = new MergeData();
 		mg.mergeAttribute(f1);
@@ -166,6 +170,37 @@ public class GenerateUTPair {
 		String sourcePath = Contants.write_filepath+f1;
 		String targetPath = Contants.write_filepath+"filter_"+f1;
 		fa.filter(sourcePath, targetPath);
+	}
+	public static void generateValidata(){
+		Date begin = TimeTool.getTime(Contants.time17);
+		Date end = TimeTool.getTime(Contants.time18);
+		String f1 = "validata.csv";
+		GenerateUTPair g = new GenerateUTPair(begin,end,24);
+		g.work();
+		MergeData mg = new MergeData();
+		mg.mergeAttribute(f1);
+		FilterAttribute fa = new FilterAttribute();
+		String sourcePath = Contants.write_filepath+f1;
+		String targetPath = Contants.write_filepath+"filter_"+f1;
+		fa.filter(sourcePath, targetPath);
+	}
+	public static void main(String[] args) {
+		/**
+		 * 16,17 ->test -> dis -48
+		 * 17,18 -> validata -> dis -24
+		 */
+		GenerateUTPair.generateValidata();
+//		Date begin = TimeTool.getTime(Contants.time17);
+//		Date end = TimeTool.getTime(Contants.time18);
+//		String f1 = "validata.csv";
+//		GenerateUTPair g = new GenerateUTPair(begin,end,24);
+//		g.work();
+//		MergeData mg = new MergeData();
+//		mg.mergeAttribute(f1);
+//		FilterAttribute fa = new FilterAttribute();
+//		String sourcePath = Contants.write_filepath+f1;
+//		String targetPath = Contants.write_filepath+"filter_"+f1;
+//		fa.filter(sourcePath, targetPath);
 		
 	}
 }
