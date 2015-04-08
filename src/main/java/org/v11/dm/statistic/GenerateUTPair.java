@@ -155,8 +155,8 @@ public class GenerateUTPair {
 		}
 	}
 	public static void main(String[] args) {
-		Date begin = TimeTool.getTime(Contants.time17);
-		Date end = TimeTool.getTime(Contants.time18);
+		Date begin = TimeTool.getTime(Contants.time18);
+		Date end = TimeTool.getTime(Contants.time19);
 		String f1 = "validata.csv";
 		GenerateUTPair g = new GenerateUTPair(begin,end);
 		g.work();
