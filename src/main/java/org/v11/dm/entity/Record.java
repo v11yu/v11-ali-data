@@ -50,7 +50,10 @@ public class Record implements Comparable<Record>{
 
 	@Override
 	public String toString() {
-		return uid+","+tid+","+op+","+geo+","+ity+","+dis;
+		StringBuilder str = new StringBuilder();
+		str.append(uid).append(',').append(tid).append(',').append(op)
+		.append(',').append(geo).append(',').append(ity).append(',').append(dis);
+		return str.toString();
 	}
 
 	public Long getUid() {

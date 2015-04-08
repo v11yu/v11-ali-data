@@ -6,22 +6,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
-import org.v11.dm.entity.*;
+import org.v11.dm.entity.Action;
+import org.v11.dm.entity.Record;
+import org.v11.dm.entity.UTPair;
 import org.v11.dm.tool.Contants;
-import org.v11.dm.tool.InputTool;
-import org.v11.dm.tool.InputToolImpl;
 import org.v11.dm.tool.OutputToolImpl;
 import org.v11.dm.tool.TimeTool;
 
-public class GenerateUTPair {
-
+public class GenerateValidate {
 	Map<String, UTPair> mp = new HashMap<String,UTPair>();
-	Date begin = TimeTool.getTime(Contants.last_time);
-	Date end = TimeTool.getTime(Contants.class_time);
-	void read(int T,int mod){
+	Set<String> clas = new HashSet<String>();
+	Date begin = TimeTool.getTime(Contants.class_time);
+	Date end = TimeTool.getTime(Contants.validata_time);
+	void read(){
 		File file = new File(Contants.record_filepath);
 		List<Record> records = new ArrayList<Record>();
 		try {
@@ -32,17 +39,13 @@ public class GenerateUTPair {
 			while((str=reader.readLine())!=null){
 				if(cnt++ == 0) continue;
 				Record r = Record.generate(str);
-				if(r==null || r.uid%mod !=T) continue;
-				String utStr = r.uid+"#"+r.tid;
+				String utStr = r.uid+"$"+r.tid;
 				if(mp.containsKey(utStr)) {
 					utp = mp.get(utStr);
 				}else{
 					utp = new UTPair();
 				}
-				if(r!=null && r.getTime().after(begin) && r.getTime().before(end) && r.op == 3){
-					utp.clas = 1;
-				}
-				if(r!=null && r.getTime().before(TimeTool.getTime(Contants.last_time))){
+				if(r!=null && r.getTime().after(begin) && r.getTime().before(end) ){
 					if(r.dis <3){
 						utp.d3[r.op]++;
 					}else if(r.dis<5){
@@ -58,6 +61,7 @@ public class GenerateUTPair {
 					}else if(r.dis<24*7){
 						utp.dd7[r.op]++;
 					}
+					if(r.op == 3) utp.clas = 1;
 					Action a = new Action(r.dis, r.op);
 					utp.ls.add(a);
 					mp.put(utStr, utp);
@@ -104,15 +108,16 @@ public class GenerateUTPair {
 			}
 		}
 	}
-	void output(int mod,int T){
+	void output(){
 		OutputToolImpl ot = new OutputToolImpl();
 		String filepath =  Contants.write_filepath;
 		Date d = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		String tim = format.format(d);
-		filepath += tim+"mod"+mod+"T"+T+".csv";
+		filepath += tim+"validata.csv";
 		int cnt = 0;
 		System.out.println(mp.size());
+		ot.output(Contants.attri_name, filepath);
 		for(Entry<String, UTPair> en: mp.entrySet()){
 			cnt++;
 			//System.out.println(en.getValue());
@@ -124,16 +129,12 @@ public class GenerateUTPair {
 		System.out.println(cnt);
 	}
 	void work(){
-		int N = 5;
-		for(int i=0;i<N;i++){
-			mp.clear();
-			read(i,N);
-			sta();
-			output(N,i);
-		}
+		read();
+		sta();
+		output();
 	}
 	public static void main(String[] args) {
-		GenerateUTPair g = new GenerateUTPair();
+		GenerateValidate g = new GenerateValidate();
 		g.work();
 		
 	}
