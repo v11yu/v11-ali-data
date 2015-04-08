@@ -24,7 +24,7 @@ public class Record implements Comparable<Record>{
 	/**　用前缀来判断地理位置 */
 	public String geo;
 	/** 商品类型*/
-	public int ity;
+	public Long ity;
 	/** 距离最后一天多少小时 */
 	public int dis;
 	public Record(){}
@@ -40,7 +40,7 @@ public class Record implements Comparable<Record>{
 		r.tid = Long.parseLong(v[1]);
 		r.op = Integer.parseInt(v[2]);
 		r.geo = v[3];
-		r.ity = Integer.parseInt(v[4]);
+		r.ity = Long.parseLong(v[4]);
 		r.dis = Integer.parseInt(v[5]);
 		return r;
 	}
