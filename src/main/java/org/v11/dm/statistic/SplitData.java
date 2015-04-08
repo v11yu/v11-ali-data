@@ -7,13 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.v11.dm.entity.Record;
+import org.v11.dm.entity.OldRecord;
 import org.v11.dm.tool.Contants;
-
+/**
+ * 将OldRecord数据切割成5份
+ * 
+ * @author v11
+ */
 public class SplitData {
 	int N = 5;
 	public void split(){
-		File readFile = new File(Contants.file+"record-user-item//tianchi_mobile_recommend_train_user.csv");
+		File readFile = new File(Contants.file+"OldRecord-user-item//tianchi_mobile_recommend_train_user.csv");
 		File outputs[] = new File[N];
 		BufferedWriter out[] = new BufferedWriter[N];
 		try {
@@ -26,7 +30,7 @@ public class SplitData {
 			String str = null;
 			while((str = cin.readLine())!=null){
 				if(cnt++ == 0) continue;
-				Record r = Record.generate(str);
+				OldRecord r = OldRecord.generate(str);
 				if(r==null ) continue;
 				int idx = (int) (r.uid%N);
 				out[idx].write(r.toString());

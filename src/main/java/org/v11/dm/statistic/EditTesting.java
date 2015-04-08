@@ -26,11 +26,12 @@ public class EditTesting {
 	static Date from = TimeTool.getTime("2014-12-17 24");
 	static Date to = TimeTool.getTime("2014-12-18 24");
 	static int get(int op){
-		if(op == 3) return 3;
+		if(op == 3) return 0;
 		if(op == 2 || op == 1) return 2;
 		return 1;
 	}
 	public static void main(String[] args) {
+		Date start = new Date();
 		File file = new File(Contants.record_filepath);
 		List<Record> records = new ArrayList<Record>();
 		Map<String,Integer> st = new HashMap<String,Integer>();
@@ -42,19 +43,17 @@ public class EditTesting {
 				if(cnt++ == 0) continue;
 				Record r = Record.generate(str);
 				String id = r.getUid()+","+r.getTid();
-				if(r!=null && r.getTime().after(from) && r.getTime().before(to)){
-					st.put(id,st.containsKey(id)?st.get(id)+get(r.op):get(r.op));
-				}
+//				if(r!=null && r.getTime().after(from) && r.getTime().before(to)){
+//					st.put(id,st.containsKey(id)?st.get(id)+get(r.op):get(r.op));
+//				}
 				if(cnt % 100000 == 0) System.out.println("read.."+cnt);
 			}
 			reader.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e){
 			e.printStackTrace();
 		}
+		Date end = new Date();
+		System.out.println("use time:"+(end.getTime()-start.getTime())/1000);
 		int val = 0;
 		while(true){
 			Scanner cin = new Scanner(System.in);
@@ -69,7 +68,7 @@ public class EditTesting {
 			System.out.println(cnt);
 			val = d;
 		}
-		File wf = new File("C://Users//damao//Desktop//ali-data//output//submit.csv");
+		File wf = new File(Contants.write_filepath+"submit.csv");
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(wf,true));
 			out.write("user_id,item_id");
@@ -77,7 +76,7 @@ public class EditTesting {
 			Iterator<Entry<String, Integer>> iter = st.entrySet().iterator();
 			while(iter.hasNext()){
 				Entry<String, Integer> s = iter.next();
-				if(s.getValue() <val) continue;
+				if(s.getValue() <=val) continue;
 				out.write(s.getKey());
 				out.newLine();
 			}
