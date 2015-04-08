@@ -4,6 +4,7 @@ public class Contants {
 	public static final String time16 = "2014-12-16 24";
 	public static final String time17 = "2014-12-17 24";
 	public static final String time18 = "2014-12-18 24";
+	public static final String time19 = "2014-12-19 24";
 	public static final String last_time = time16;
 	public static final String class_time = time17;
 	public static final String validata_time = time18;
@@ -15,6 +16,7 @@ public class Contants {
 	//tianchi_mobile_recommend_train_user
 	public static final String read_filepath = file+"tianchi_mobile_recommend_train_user//";
 	public static final String write_filepath = file+"output//";
+	public static final String testing_filepath = file+"output_testing//";
 	public static final String record_filename = "record.csv";
 	
 	public static final String record_split_filepath = file+"record-user-item//";

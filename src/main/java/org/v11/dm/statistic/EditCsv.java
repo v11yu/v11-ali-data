@@ -36,15 +36,12 @@ public class EditCsv {
 				if(r == null){
 					System.err.println(str);
 					err++;
-					System.err.println(err);
-					continue;
 				}
 				r.dis+=48;
 				out.write(r.toString());
 				out.newLine();
 				if(cnt % 10000 == 0){
 					System.out.println("read ..."+cnt);
-					//break;
 				}
 			}
 			out.close();

@@ -43,6 +43,7 @@ public class MergeData {
 					if(cnt++ % 100000 == 0) System.out.println("read.."+cnt);
 				}
 				reader.close();
+				w.flush();
 				w.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -53,14 +54,10 @@ public class MergeData {
 	/**
 	 * 合并特征属性
 	 */
-	public void mergeAttribute(){
+	public void mergeAttribute(String targetpaths){
 		String ff = Contants.write_filepath;
-		String paths[] = {"2015-04-07-17-18-09mod5T0.csv",
-				"2015-04-07-17-51-27mod5T1.csv",
-				"2015-04-07-18-19-14mod5T2.csv",
-				"2015-04-07-18-50-17mod5T3.csv",
-				"2015-04-07-19-22-22mod5T4.csv"};
-		String targetpaths = "testing.csv";
+		String paths[] = {"0.csv","1.csv","2.csv","3.csv","4.csv"};
+		//String targetpaths = "testing.csv";
 		merge(targetpaths,paths,ff,Contants.attri_name);
 	}
 	/**

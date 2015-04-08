@@ -42,24 +42,14 @@ public class EditTesting {
 			List<String> strs = new ArrayList<String>();
 			while((str=reader.readLine())!=null){
 				if(cnt++ == 0) continue;
-<<<<<<< HEAD
+
 				Record r = Record.generate(str);
-				String id = r.getUid()+","+r.getTid();
+				String id = r.uid+","+r.tid;
 //				if(r!=null && r.getTime().after(from) && r.getTime().before(to)){
 //					st.put(id,st.containsKey(id)?st.get(id)+get(r.op):get(r.op));
 //				}
 				if(cnt % 100000 == 0) System.out.println("read.."+cnt);
-=======
-				strs.add(str);
-				if(strs.size() > 100){
-					Record r = Record.generate(str);
-					String id = r.getUid()+","+r.getTid();
-					if(r!=null && r.getTime().after(from) && r.getTime().before(to)){
-						st.put(id,st.containsKey(id)?st.get(id)+get(r.op):get(r.op));
-					}
-					if(cnt % 100000 == 0) System.out.println("read.."+cnt);
-				}
->>>>>>> origin/master
+
 			}
 			reader.close();
 		} catch (Exception e){

@@ -1,9 +1,11 @@
 package org.v11.dm.statistic;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,18 +13,29 @@ import java.util.Map.Entry;
 
 import org.v11.dm.entity.*;
 import org.v11.dm.tool.Contants;
-import org.v11.dm.tool.InputTool;
-import org.v11.dm.tool.InputToolImpl;
-import org.v11.dm.tool.OutputToolImpl;
+
 import org.v11.dm.tool.TimeTool;
 
 public class GenerateUTPair {
 
 	Map<String, UTPair> mp = new HashMap<String,UTPair>();
-	Date begin = TimeTool.getTime(Contants.last_time);
-	Date end = TimeTool.getTime(Contants.class_time);
+	/*
+	 *  [0,begin) 区间做统计
+	 *  [begin,end) 做clas信息，买or没买
+	 */
+	Date begin;
+	Date end;
+	static Date lastTime = TimeTool.getTime(Contants.time18);
+	int leftDistance;
+	int rightDistance;
+	public GenerateUTPair(Date bg,Date ed){
+		this.begin = bg;
+		this.end = ed;
+		this.leftDistance = (int) ((lastTime.getTime() - begin.getTime())/1000/3600);
+		this.rightDistance = (int) ((lastTime.getTime() - end.getTime())/1000/3600);
+	}
 	void read(int T,int mod){
-		File file = new File(Contants.record_filepath);
+		File file = new File(Contants.read_filepath+Contants.record_filename);
 		List<Record> records = new ArrayList<Record>();
 		try {
 			UTPair utp = null;
@@ -30,19 +43,24 @@ public class GenerateUTPair {
 			String str ;
 			int cnt = 0;
 			while((str=reader.readLine())!=null){
+				if(cnt % 100000 == 0){
+					System.out.println(T+" read.."+cnt);
+					//break;
+				}
 				if(cnt++ == 0) continue;
 				Record r = Record.generate(str);
 				if(r==null || r.uid%mod !=T) continue;
-				String utStr = r.uid+"#"+r.tid;
+				String utStr = r.uid+"$"+r.tid;
 				if(mp.containsKey(utStr)) {
 					utp = mp.get(utStr);
 				}else{
 					utp = new UTPair();
 				}
-				if(r!=null && r.getTime().after(begin) && r.getTime().before(end) && r.op == 3){
+				if(r!=null && r.dis<= leftDistance && r.dis >= rightDistance
+						&&r.op == 3){
 					utp.clas = 1;
 				}
-				if(r!=null && r.getTime().before(TimeTool.getTime(Contants.last_time))){
+				if(r!=null && r.dis>=leftDistance){
 					if(r.dis <3){
 						utp.d3[r.op]++;
 					}else if(r.dis<5){
@@ -62,11 +80,6 @@ public class GenerateUTPair {
 					utp.ls.add(a);
 					mp.put(utStr, utp);
 				}
-				if(cnt % 1000 == 0){
-					System.out.println("read.."+cnt);
-					//break;
-				}
-				
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
@@ -105,23 +118,32 @@ public class GenerateUTPair {
 		}
 	}
 	void output(int mod,int T){
-		OutputToolImpl ot = new OutputToolImpl();
+		
 		String filepath =  Contants.write_filepath;
-		Date d = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-		String tim = format.format(d);
-		filepath += tim+"mod"+mod+"T"+T+".csv";
-		int cnt = 0;
-		System.out.println(mp.size());
-		for(Entry<String, UTPair> en: mp.entrySet()){
-			cnt++;
-			//System.out.println(en.getValue());
-			StringBuilder tmp = new StringBuilder();
-			tmp.append(en.getKey()).append(',').append(en.getValue().toString());
-			ot.output(tmp.toString(),filepath);
-			if(cnt % 10000 == 0) System.out.println("write.."+cnt);
+		filepath += T+".csv";
+		BufferedWriter out;
+		try {
+			out = new BufferedWriter(new FileWriter(filepath, true));
+			int cnt = 0;
+			System.out.println(mp.size());
+			for (Entry<String, UTPair> en : mp.entrySet()) {
+				cnt++;
+				// System.out.println(en.getValue());
+				StringBuilder tmp = new StringBuilder();
+				tmp.append(en.getKey()).append(',')
+						.append(en.getValue().toString());
+				out.write(tmp.toString());
+				out.newLine();
+				if (cnt % 10000 == 0)
+					System.out.println("write.." + cnt);
+			}
+			System.out.println(cnt);
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println(cnt);
 	}
 	void work(){
 		int N = 5;
@@ -133,8 +155,17 @@ public class GenerateUTPair {
 		}
 	}
 	public static void main(String[] args) {
-		GenerateUTPair g = new GenerateUTPair();
+		Date begin = TimeTool.getTime(Contants.time17);
+		Date end = TimeTool.getTime(Contants.time18);
+		String f1 = "validata.csv";
+		GenerateUTPair g = new GenerateUTPair(begin,end);
 		g.work();
+		MergeData mg = new MergeData();
+		mg.mergeAttribute(f1);
+		FilterAttribute fa = new FilterAttribute();
+		String sourcePath = Contants.write_filepath+f1;
+		String targetPath = Contants.write_filepath+"filter_"+f1;
+		fa.filter(sourcePath, targetPath);
 		
 	}
 }

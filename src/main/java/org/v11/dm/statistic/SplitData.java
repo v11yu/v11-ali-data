@@ -17,7 +17,7 @@ import org.v11.dm.tool.Contants;
 public class SplitData {
 	int N = 5;
 	public void split(){
-		File readFile = new File(Contants.file+"OldRecord-user-item//tianchi_mobile_recommend_train_user.csv");
+		File readFile = new File(Contants.file+"Record-user-item//tianchi_mobile_recommend_train_user.csv");
 		File outputs[] = new File[N];
 		BufferedWriter out[] = new BufferedWriter[N];
 		try {
