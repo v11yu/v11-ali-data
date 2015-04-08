@@ -40,7 +40,7 @@ public class MergeData {
 				while((str=reader.readLine())!=null){
 					w.write(str);
 					w.newLine();
-					if(cnt++ % 1000 == 0) System.out.println("read.."+cnt);
+					if(cnt++ % 100000 == 0) System.out.println("read.."+cnt);
 				}
 				reader.close();
 				w.close();
