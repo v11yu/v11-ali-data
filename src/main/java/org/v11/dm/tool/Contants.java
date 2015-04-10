@@ -47,7 +47,7 @@ public class Contants {
 	public static final String write_filepath = file+"output//";
 	public static final String testing_filepath = file+"output_testing//";
 	public static final String record_filename = "record.csv";
-	
+	public static final String sort_record_filename = "sort_record.csv";
 	public static final String record_split_filepath = file+"record-user-item//";
 	//public static final String read_record_path = file+"tianchi_mobile_recommend_train_user//";
 	public static final String oldrecord_path = file+"tianchi_mobile_recommend_train_user//tianchi_mobile_recommend_train_user.csv";

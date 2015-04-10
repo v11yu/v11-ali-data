@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.v11.dm.entity.Action;
 import org.v11.dm.entity.Record;
 import org.v11.dm.entity.TmpInfo;
@@ -26,7 +25,6 @@ import org.v11.dm.method.utp.LastDupActionMethod;
 import org.v11.dm.method.utp.LastVsSumMethod;
 import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.TimeTool;
-
 public class GenerateUTP {
 	/*
 	 *  [0,begin) 区间做统计
@@ -112,7 +110,6 @@ public class GenerateUTP {
 		for(int i=0;i<4;i++){
 			if(utp.hours[utp.Hours.length-1][i] >0) return true;
 		}
-		return false;
-		
+		return false;	
 	}
 }
