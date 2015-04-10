@@ -44,6 +44,6 @@ public class App
 		generate(begin,end,f1,0,N);
 	}
 	public static void main(String[] args) {
-		generateTesting();
+		generateValidata();
 	}
 }
