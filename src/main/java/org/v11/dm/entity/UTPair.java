@@ -5,32 +5,56 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UTPair {
-	public int d3[] = new int[4];
-	public int d5[] = new int[4];
-	public int d10[] = new int[4];
-	public int d16[] = new int[4];
-	public int d24[] = new int[4];
-	public int dd3[] = new int[4];
-	public int dd7[] = new int[4];
-	public int i3[] = new int[4];
-	public int i7[] = new int[4];
+	static public int Hours[] = {3,5,10,16,24,24*3,24*7,24*30};
+	static public int Intervals[] = {3,7,16,24};
+	static public int LasVsSum[] = {3,5,9,16,24,24*3};
+	public int hours[][] = new int[Hours.length][4];
+	public int intervals[] = new int[Intervals.length];
+	public double lasVsSum[][] = new double[LasVsSum.length][4];
+	public int lastAction[] = new int[4];
+	public int lastDupAction[] = new int[4];
+	public int isBuy;
+	public int isDupBuy;
+	public int hasActionAfterBuy;
 	public int clas = 0;
-	public List<Action> ls = new ArrayList<Action>();
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		
-		str = array2String(d3).append(array2String(d5)).append(array2String(d10)).append(array2String(d16)).append(array2String(d16))
-				.append(array2String(dd3)).append(array2String(dd7))
-				.append(array2String(i3)).append( array2String(i7)).append(clas);
-		return str.toString();
+		str = aa2s(hours).
+			append(a2s(intervals)).
+			append(aa2s(lasVsSum));
+		str.append(a2s(lastAction))
+		.append(a2s(lastDupAction));
+		str.append(isBuy).append(',').append(isDupBuy).append(',').append(hasActionAfterBuy).append(',');
+		return str.append(clas).toString();
 	};
-	private StringBuilder array2String(int a[]){
+
+	private StringBuilder aa2s(int a[][]){
+		StringBuilder str = new StringBuilder();
+		for(int i=0;i<a.length;i++){
+			str.append(a2s(a[i]));
+		}
+		return str;
+	}
+	private StringBuilder a2s(int a[]){
 		StringBuilder str = new StringBuilder();
 		for(int i=0;i<a.length;i++){
 			str.append(a[i]).append(',');
 		}
 		return str;
 	}
-	
+	private StringBuilder aa2s(double a[][]){
+		StringBuilder str = new StringBuilder();
+		for(int i=0;i<a.length;i++){
+			str.append(a2s(a[i]));
+		}
+		return str;
+	}
+	private StringBuilder a2s(double a[]){
+		StringBuilder str = new StringBuilder();
+		for(int i=0;i<a.length;i++){
+			str.append(a[i]).append(',');
+		}
+		return str;
+	}
 }

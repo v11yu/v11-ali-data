@@ -1,6 +1,35 @@
 package org.v11.dm.tool;
 
+import org.v11.dm.entity.UTPair;
+
 public class Contants {
+	private static String attri_name = null;
+	private static String get(String name){return name+",";}
+	private static String getls(int len,String name){
+		int cnt = 0;
+		String str = "";
+		for(int i=0;i<len;i++){
+			str = str+name+cnt+",";
+			cnt++;
+		}
+		return str;
+	}
+	public static String getAttributeName(){
+		String str = "uid,tid,";
+		UTPair utp = new UTPair();
+		if(attri_name == null){
+			attri_name = str+getls(utp.hours.length*4,"utp_h")
+					+getls(utp.intervals.length,"utp_interval")
+					+getls(utp.lasVsSum.length*4,"utp_la")
+					+getls(utp.lastAction.length,"utp_at")
+					+getls(utp.lastDupAction.length,"utp_atdup")
+					+get("isbuy")
+					+get("isDupBuy")
+					+get("hasActionAfterBuy")
+					+"clas";
+		}
+		return attri_name;		
+	}
 	public static final String time16 = "2014-12-16 24";
 	public static final String time17 = "2014-12-17 24";
 	public static final String time18 = "2014-12-18 24";
@@ -8,11 +37,11 @@ public class Contants {
 	public static final String last_time = time16;
 	public static final String class_time = time17;
 	public static final String validata_time = time18;
-	public static final String attri_name = "id,d30,d31,d32,d33,d50,d51,d52,d53,d100,d101,d102,d103,d160,d161,d162,d163,d240,d241,d242,d243,dd30,dd31,dd32,dd33,dd70,dd71,dd72,dd73,i30,i31,i32,i33,i70,i71,i72,i73,class";
+	
 	public static final String record_attri_name="uid,tid,op,geo,item_type,dis";
 	public static final String home_file = "C://Users//v11/Desktop//2015阿里大数据//";
 	public static final String of_file = "C://Users//damao//Desktop//ali-data//";
-	public static final String file = home_file;
+	public static final String file = of_file;
 	//tianchi_mobile_recommend_train_user
 	public static final String read_filepath = file+"tianchi_mobile_recommend_train_user//";
 	public static final String write_filepath = file+"output//";
@@ -20,7 +49,15 @@ public class Contants {
 	public static final String record_filename = "record.csv";
 	
 	public static final String record_split_filepath = file+"record-user-item//";
-	public static final String read_record_path = file+"tianchi_mobile_recommend_train_user//";
-	public static final String record_filepath = file+"tianchi_mobile_recommend_train_user//tianchi_mobile_recommend_train_user.csv";
-	public static final String item_filepath = file+"tianchi_mobile_recommend_train_item.csv";
+	//public static final String read_record_path = file+"tianchi_mobile_recommend_train_user//";
+	public static final String oldrecord_path = file+"tianchi_mobile_recommend_train_user//tianchi_mobile_recommend_train_user.csv";
+	public static final String item_name = "tianchi_mobile_recommend_train_item.csv";
+	public static void main(String[] args) {
+		System.out.println(getAttributeName());
+		String str = getAttributeName();
+		System.out.println(str.split(",").length);
+	}
+
+
+
 }

@@ -32,7 +32,7 @@ public class EditTesting {
 	}
 	public static void main(String[] args) {
 		Date start = new Date();
-		File file = new File(Contants.record_filepath);
+		File file = new File(Contants.oldrecord_path);
 		List<Record> records = new ArrayList<Record>();
 		Map<String,Integer> st = new HashMap<String,Integer>();
 		try {
