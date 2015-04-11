@@ -16,7 +16,6 @@ public class HoursMethod implements UTPairMethod {
 			for (int i = 0; i < UTPair.Hours.length; i++) {
 				if (r.dis <= UTPair.Hours[i]) {
 					utp.hours[i][r.op]++;
-					break;
 				}
 			}
 		}

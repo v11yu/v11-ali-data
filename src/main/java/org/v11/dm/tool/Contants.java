@@ -41,13 +41,14 @@ public class Contants {
 	public static final String record_attri_name="uid,tid,op,geo,item_type,dis";
 	public static final String home_file = "C://Users//v11/Desktop//2015阿里大数据//";
 	public static final String of_file = "C://Users//damao//Desktop//ali-data//";
-	public static final String file = of_file;
+	public static final String file = home_file;
 	//tianchi_mobile_recommend_train_user
 	public static final String read_filepath = file+"tianchi_mobile_recommend_train_user//";
 	public static final String write_filepath = file+"output//";
 	public static final String testing_filepath = file+"output_testing//";
 	public static final String record_filename = "record.csv";
-	public static final String sort_record_filename = "sort_record.csv";
+	public static final String user_sort_record_filename = "usort_record.csv";
+	
 	public static final String record_split_filepath = file+"record-user-item//";
 	//public static final String read_record_path = file+"tianchi_mobile_recommend_train_user//";
 	public static final String oldrecord_path = file+"tianchi_mobile_recommend_train_user//tianchi_mobile_recommend_train_user.csv";

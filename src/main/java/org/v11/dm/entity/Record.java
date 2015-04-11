@@ -19,7 +19,7 @@ import weka.core.pmml.Constant;
 public class Record implements Comparable<Record>{
 	public Long uid;
 	public Long tid;
-	/** 操作类型,包括浏览、收藏、加购物车、购买，对应取值分别是1、2、3、4。*/
+	/** 操作类型,包括浏览、收藏、加购物车、购买，对应取值分别是0、1、2、3。*/
 	public int op;
 	/**　用前缀来判断地理位置 */
 	public String geo;
@@ -57,7 +57,11 @@ public class Record implements Comparable<Record>{
 		// TODO Auto-generated method stub
 		if(this.uid>o.uid) return 1;
 		else if(this.uid<o.uid) return -1;
-		return 0;
+		else{
+			if(this.tid>o.tid) return 1;
+			else if(this.tid<o.tid) return -1;
+			return 0;
+		}
 	}
 	
 }

@@ -20,12 +20,14 @@ public class UTPair {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		str = aa2s(hours).
-			append(a2s(intervals)).
-			append(aa2s(lasVsSum));
-		str.append(a2s(lastAction))
-		.append(a2s(lastDupAction));
-		str.append(isBuy).append(',').append(isDupBuy).append(',').append(hasActionAfterBuy).append(',');
+		str = aa2s(hours)
+		.append(a2s(intervals))
+		.append(aa2s(lasVsSum))
+		.append(a2s(lastAction))
+		.append(a2s(lastDupAction))
+		.append(isBuy).append(',')
+		.append(isDupBuy).append(',')
+		.append(hasActionAfterBuy).append(',');
 		return str.append(clas).toString();
 	};
 

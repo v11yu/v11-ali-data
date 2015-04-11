@@ -14,9 +14,37 @@ import org.v11.dm.entity.Record;
 import org.v11.dm.tool.Contants;
 
 public class SortRecord {
+	public void filterRecord(){
+		File file = new File(Contants.read_filepath+"user_sort_record.csv");
+		File outfile = new File(Contants.read_filepath+Contants.user_sort_record_filename);
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String str;
+			BufferedWriter out = new BufferedWriter(new FileWriter(outfile));
+			int cnt = 0;
+			out.write(Contants.record_attri_name);
+			out.newLine();
+			while((str=reader.readLine())!=null){
+				if(cnt++ == 0) continue;
+
+				Record r = Record.generate(str);
+				if(r==null) continue;
+				//ls.add(r);
+				out.write(r.toString());
+				out.newLine();
+				if(cnt % 100000 == 0) System.out.println("read "+cnt);
+			}
+			reader.close();
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void sortRecord(){
 		File file = new File(Contants.read_filepath+Contants.record_filename);
-		File outfile = new File(Contants.read_filepath+Contants.sort_record_filename);
+		File outfile = new File(Contants.read_filepath+Contants.user_sort_record_filename);
 		List<Record> ls = new ArrayList<Record>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -27,9 +55,10 @@ public class SortRecord {
 				Record r = Record.generate(str);
 				if(r==null) continue;
 				ls.add(r);
-				if(cnt % 100000 == 0) System.out.println("read "+cnt);
+				if(cnt % 1000000 == 0) System.out.println("read "+cnt);
 			}
 			reader.close();
+			System.out.println("read finish...");
 			BufferedWriter out = new BufferedWriter(new FileWriter(outfile));
 			out.write(Contants.record_attri_name);
 			out.newLine();

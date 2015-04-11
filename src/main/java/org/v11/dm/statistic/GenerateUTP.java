@@ -41,7 +41,7 @@ public class GenerateUTP {
 		this.TT = TT;
 		this.fileName = fileName;
 	}
-	void read(){
+	public void work(){
 		File outFile = new File(Contants.write_filepath+fileName);  
 		File file = new File(Contants.read_filepath+Contants.record_filename);
 		try {
@@ -54,6 +54,8 @@ public class GenerateUTP {
 			int cnt = 0;
 			UTPair utp = null;
 			TmpInfo curInfo = new TmpInfo();
+			int outCnt = 0;
+			int delCnt = 0;
 			while((str=reader.readLine())!=null){
 				if(cnt++ == 0) continue;
 				if(cnt % 100000 == 0) System.out.println("read.."+cnt);
@@ -65,7 +67,8 @@ public class GenerateUTP {
 					if(judgeHasValue(utp)){
 						out.write(preUtp+","+utp);
 						out.newLine();
-					}
+						outCnt++;
+					}else delCnt++;
 					curInfo = new TmpInfo();
 				}
 				if(r!=null && r.dis<= leftDistance && r.dis >= rightDistance
@@ -84,6 +87,8 @@ public class GenerateUTP {
 				out.write(preUtp+","+utp);
 				out.newLine();
 			}
+			System.out.println("print delete count:"+delCnt);
+			System.out.println("print add count:"+outCnt);
 			reader.close();
 			out.flush();
 			out.close();
