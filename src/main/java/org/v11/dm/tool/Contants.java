@@ -14,6 +14,10 @@ public class Contants {
 		}
 		return str;
 	}
+	/*
+	 * attribute name
+	 */
+	public static final String record_attri_name="uid,tid,op,geo,item_type,dis";
 	public static String getAttributeName(){
 		String str = "uid,tid,";
 		UTPair utp = new UTPair();
@@ -30,6 +34,9 @@ public class Contants {
 		}
 		return attri_name;		
 	}
+	/*
+	 * time
+	 */
 	public static final String time16 = "2014-12-16 24";
 	public static final String time17 = "2014-12-17 24";
 	public static final String time18 = "2014-12-18 24";
@@ -37,28 +44,28 @@ public class Contants {
 	public static final String last_time = time16;
 	public static final String class_time = time17;
 	public static final String validata_time = time18;
-	
-	public static final String record_attri_name="uid,tid,op,geo,item_type,dis";
+	/*
+	 * workspace path
+	 */
 	public static final String home_file = "C://Users//v11/Desktop//2015阿里大数据//";
 	public static final String of_file = "C://Users//damao//Desktop//ali-data//";
 	public static final String file = home_file;
-	//tianchi_mobile_recommend_train_user
+	/*
+	 * filepath
+	 */
 	public static final String read_filepath = file+"tianchi_mobile_recommend_train_user//";
 	public static final String write_filepath = file+"output//";
-	public static final String testing_filepath = file+"output_testing//";
-	public static final String record_filename = "record.csv";
-	public static final String user_sort_record_filename = "usort_record.csv";
-	
-	public static final String record_split_filepath = file+"record-user-item//";
-	//public static final String read_record_path = file+"tianchi_mobile_recommend_train_user//";
-	public static final String oldrecord_path = file+"tianchi_mobile_recommend_train_user//tianchi_mobile_recommend_train_user.csv";
+	public static final String bak_write_filepath = file+"output2//";
+	/*
+	 * fileName
+	 */
 	public static final String item_name = "tianchi_mobile_recommend_train_item.csv";
+	public static final String record_filename = "record.csv";
+
+
 	public static void main(String[] args) {
 		System.out.println(getAttributeName());
 		String str = getAttributeName();
 		System.out.println(str.split(",").length);
 	}
-
-
-
 }

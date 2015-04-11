@@ -1,4 +1,4 @@
-package org.v11.dm.statistic;
+package org.v11.dm.tool;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,12 +11,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.v11.dm.entity.Record;
-import org.v11.dm.tool.Contants;
 
 public class SortRecord {
 	public void filterRecord(){
 		File file = new File(Contants.read_filepath+"user_sort_record.csv");
-		File outfile = new File(Contants.read_filepath+Contants.user_sort_record_filename);
+		File outfile = new File("");
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String str;
@@ -44,7 +43,7 @@ public class SortRecord {
 	}
 	public void sortRecord(){
 		File file = new File(Contants.read_filepath+Contants.record_filename);
-		File outfile = new File(Contants.read_filepath+Contants.user_sort_record_filename);
+		File outfile = new File("");
 		List<Record> ls = new ArrayList<Record>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));

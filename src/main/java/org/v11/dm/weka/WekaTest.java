@@ -6,6 +6,7 @@ import java.io.FileReader;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.evaluation.NominalPrediction;
+import weka.classifiers.functions.Logistic;
 import weka.classifiers.rules.DecisionTable;
 import weka.classifiers.rules.PART;
 import weka.classifiers.trees.DecisionStump;
@@ -91,7 +92,8 @@ public class WekaTest {
 				new PART(), 
 				new DecisionTable(),//decision table majority classifier
 				new DecisionStump(), //one-level decision tree
-				new RandomForest()
+				new RandomForest(),
+				new Logistic()
 		};
  
 		// Run for each model

@@ -9,8 +9,8 @@ public class UTPair {
 	static public int Intervals[] = {3,7,16,24};
 	static public int LasVsSum[] = {3,5,9,16,24,24*3};
 	public int hours[][] = new int[Hours.length][4];
-	public int intervals[] = new int[Intervals.length];
 	public double lasVsSum[][] = new double[LasVsSum.length][4];
+	public int intervals[] = new int[Intervals.length];
 	public int lastAction[] = new int[4];
 	public int lastDupAction[] = new int[4];
 	public int isBuy;
