@@ -10,11 +10,11 @@ import java.util.Random;
 import org.v11.dm.tool.Contants;
 
 public class SampleData {
-	int T = 200;// 负样本比例
+	int T = 50;// 负样本比例
 	public void sample(String filename){
 		String path = Contants.bak_write_filepath;
 		File readpath = new File(path+filename);
-		File tarpath = new File(path+"sameple_"+filename);
+		File tarpath = new File(path+"sameple_"+T+"_"+filename);
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(readpath));
 			BufferedWriter out = new BufferedWriter(new FileWriter(tarpath));
@@ -32,7 +32,7 @@ public class SampleData {
 				int clas = Integer.parseInt(ls[ls.length-1]);
 				if(clas == 1) {
 					correct++;
-					out.write(str);
+					out.write(editStr(str,clas));
 					out.newLine();
 				}
 			}
@@ -57,7 +57,7 @@ public class SampleData {
 					int randomNum = random.nextInt(numCount);
 					if(randomNum > incorrect) continue;
 					outCnt++;
-					out.write(str);
+					out.write(editStr(str,clas));
 					out.newLine();
 				}
 			}
@@ -70,9 +70,20 @@ public class SampleData {
 			e.printStackTrace();
 		}
 	}
+	private String editStr(String str,int clas){
+		String strs[] = str.split(",");
+		StringBuilder res = new StringBuilder();
+		for(int i=0;i<strs.length-1;i++){
+			res.append(strs[i]).append(',');
+		}
+		if(clas == 1) res.append("yes");
+		else res.append("no");
+		return res.toString();
+		
+	}
 	private String getName(String str){return " ["+str+"]";}
 	public static void main(String[] args) {
 		SampleData sample = new SampleData();
-		sample.sample("filter_19.csv");
+		sample.sample("filter_validata.csv");
 	}
 }
