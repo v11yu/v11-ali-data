@@ -13,37 +13,10 @@ import java.util.List;
 import org.v11.dm.entity.Record;
 
 public class SortRecord {
-	public void filterRecord(){
-		File file = new File(Contants.read_filepath+"user_sort_record.csv");
-		File outfile = new File("");
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String str;
-			BufferedWriter out = new BufferedWriter(new FileWriter(outfile));
-			int cnt = 0;
-			out.write(Contants.record_attri_name);
-			out.newLine();
-			while((str=reader.readLine())!=null){
-				if(cnt++ == 0) continue;
-
-				Record r = Record.generate(str);
-				if(r==null) continue;
-				//ls.add(r);
-				out.write(r.toString());
-				out.newLine();
-				if(cnt % 100000 == 0) System.out.println("read "+cnt);
-			}
-			reader.close();
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	public void sortRecord(){
-		File file = new File(Contants.read_filepath+Contants.record_filename);
-		File outfile = new File("");
+		File file = new File("D://"+Contants.record_filename);
+		File outfile = new File("D://"+"urecord.csv");
 		List<Record> ls = new ArrayList<Record>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -62,9 +35,12 @@ public class SortRecord {
 			out.write(Contants.record_attri_name);
 			out.newLine();
 			Collections.sort(ls);
+			System.out.println("sort finish...");
+			cnt = 0;
 			for(Record r:ls){
 				out.write(r.toString());
 				out.newLine();
+				if(cnt++% 1000000 == 0) System.out.println("write..."+cnt);
 			}
 			out.flush();
 			out.close();

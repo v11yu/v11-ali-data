@@ -49,17 +49,18 @@ public class Contants {
 	 */
 	public static final String home_file = "C://Users//v11/Desktop//2015阿里大数据//";
 	public static final String of_file = "C://Users//damao//Desktop//ali-data//";
-	public static final String file = home_file;
+	public static final String file = of_file;
 	/*
 	 * filepath
 	 */
 	public static final String read_filepath = file+"tianchi_mobile_recommend_train_user//";
 	public static final String write_filepath = file+"output//";
 	public static final String bak_write_filepath = file+"output2//";
+	public static final String daisy_write_filepath = file+"daisy-workspace//";
 	/*
 	 * fileName
 	 */
-	public static final String item_name = "tianchi_mobile_recommend_train_item.csv";
+	public static final String item_pathname = file+"tianchi_mobile_recommend_train_item.csv";
 	public static final String record_filename = "record.csv";
 
 

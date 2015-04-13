@@ -1,4 +1,4 @@
-package org.v11.dm.statistic;
+package org.v11.dm.generate;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

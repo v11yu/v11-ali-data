@@ -10,9 +10,9 @@ import java.util.Random;
 import org.v11.dm.tool.Contants;
 
 public class SampleData {
-	int T = 50;// 负样本比例
-	public void sample(String filename){
-		String path = Contants.bak_write_filepath;
+	int T = 100;// 负样本比例
+	static String path = Contants.daisy_write_filepath;
+	public void sample(String filename,boolean f){	
 		File readpath = new File(path+filename);
 		File tarpath = new File(path+"sameple_"+T+"_"+filename);
 		try{
@@ -32,7 +32,8 @@ public class SampleData {
 				int clas = Integer.parseInt(ls[ls.length-1]);
 				if(clas == 1) {
 					correct++;
-					out.write(editStr(str,clas));
+					if(f)out.write(editStr(str,clas));
+					else out.write(str);
 					out.newLine();
 				}
 			}
@@ -57,7 +58,8 @@ public class SampleData {
 					int randomNum = random.nextInt(numCount);
 					if(randomNum > incorrect) continue;
 					outCnt++;
-					out.write(editStr(str,clas));
+					if(f)out.write(editStr(str,clas));
+					else out.write(str);
 					out.newLine();
 				}
 			}
@@ -83,7 +85,14 @@ public class SampleData {
 	}
 	private String getName(String str){return " ["+str+"]";}
 	public static void main(String[] args) {
+		SampleData.path = Contants.write_filepath;
+		String files[] = new String[5];
 		SampleData sample = new SampleData();
-		sample.sample("filter_validata.csv");
+		for(int i =0;i<5;i++){
+			files[i] = "merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+			sample.sample(files[i],false);
+		}
+		
+		
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UTPair {
-	static public int Hours[] = {3,5,10,16,24,24*3,24*7,24*30};
+	static public int Hours[] = {3,5,10,16,24,24*3,24*7};
 	static public int Intervals[] = {3,7,16,24};
 	static public int LasVsSum[] = {3,5,9,16,24,24*3};
 	public int hours[][] = new int[Hours.length][4];
