@@ -16,6 +16,7 @@ public class UTPair {
 	public int isBuy;
 	public int isDupBuy;
 	public int hasActionAfterBuy;
+	public double avgBuy;
 	public int clas = 0;
 	@Override
 	public String toString() {
@@ -27,7 +28,8 @@ public class UTPair {
 		.append(a2s(lastDupAction))
 		.append(isBuy).append(',')
 		.append(isDupBuy).append(',')
-		.append(hasActionAfterBuy).append(',');
+		.append(hasActionAfterBuy).append(',')
+		.append(avgBuy).append(',');
 		return str.append(clas).toString();
 	};
 

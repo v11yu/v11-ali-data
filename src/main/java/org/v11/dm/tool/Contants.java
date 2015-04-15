@@ -30,6 +30,7 @@ public class Contants {
 					+get("isbuy")
 					+get("isDupBuy")
 					+get("hasActionAfterBuy")
+					+get("avgBuy")
 					+"clas";
 		}
 		return attri_name;		
