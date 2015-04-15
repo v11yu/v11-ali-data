@@ -1,8 +1,10 @@
 package org.v11.dm.weka;
 import org.v11.dm.tool.Contants;
 
+import weka.classifiers.Classifier;
 import weka.classifiers.functions.Logistic;
 import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSink;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -14,24 +16,15 @@ public class OutputResult {
 		Instances data = DataSource.read(testDateFile);
 		data.setClassIndex(data.numAttributes() - 1);
 		data.deleteAttributeAt(0);
-		J48 model = new J48(); // new instance of tree
-		//data.deleteAttributeAt(0);
-//		String[] options = new String[2];
-//		options[0] = "-R"; // "range"
-//		options[1] = "1"; // first attribute
-//		Remove remove = new Remove(); // new instance of filter
-//		remove.setOptions(options); // set options
-//		remove.setInputFormat(data); // inform filter about dataset
-//		data = Filter.useFilter(data, remove); // apply
-		// **AFTER** setting options
-
-		//data.deleteAttributeAt(0);
+		data.deleteAttributeAt(1);
+		Classifier model = new RandomForest(); // new instance of tree
 		model.buildClassifier(data); // build classifier
 
 		Instances validata = DataSource.read(validataFile);
 		validata.setClassIndex(validata.numAttributes() - 1);
 		Instances outputData = new Instances(validata);
 		validata.deleteAttributeAt(0);
+		validata.deleteAttributeAt(1);
 																		// filter
 		// create copy
 		//Instances labeled = new Instances(newunlabeled);
@@ -49,8 +42,9 @@ public class OutputResult {
 		// TODO Auto-generated method stub
 		int T = 50;
 		OutputResult aModel = new OutputResult();
-		String path = Contants.bak_write_filepath;
-		String files[]={"sameple_"+T+"_"+"filter_testing.csv","sameple_"+T+"_"+"filter_validata.csv","OutputResult.csv"};
+		String path = Contants.write_filepath;
+		String f[] = {"finalTrainData.arff","hascopy_finalTrainDataTwo.arff","hascopy_finalTrainDataThree.arff","hascopy_finalTrainDataFour.arff","hascopy_finalTrainDataFive.arff"};
+		String files[]={f[4],"submit.arff","result_5.csv"};
 		for(int i=0;i<files.length;i++) files[i] = path+files[i];
 		aModel.classifyingInstances(files[0],files[1],files[2]);
 

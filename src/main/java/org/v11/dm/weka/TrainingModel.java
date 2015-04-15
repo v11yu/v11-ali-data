@@ -49,24 +49,20 @@ public class TrainingModel {
 		Instances validataData = DataSource.read(validataDataFile);
 		data.setClassIndex(data.numAttributes() - 1);
 		validataData.setClassIndex(validataData.numAttributes() - 1);
+		data.deleteAttributeAt(0);
+		data.deleteAttributeAt(1);
+		validataData.deleteAttributeAt(0);
+		validataData.deleteAttributeAt(1);
+		Classifier model = new RandomForest(); // new instance of tree
+		
 
-		Classifier model = new J48(); // new instance of tree
+	
+		model.buildClassifier(data); // build classifier
 		
-		String[] options = new String[2];
-		options[0] = "-R"; // "range"
-		options[1] = "1"; // first attribute
-		Remove remove = new Remove(); // new instance of filter
-		remove.setOptions(options); // set options
-		remove.setInputFormat(data); // inform filter about dataset
-		// **AFTER** setting options
-		Instances newData = Filter.useFilter(data, remove); // apply filter
-		Instances newValidataData = Filter.useFilter(validataData, remove);
-		model.buildClassifier(newData); // build classifier
-		
-		Evaluation eval = new Evaluation(newData);
-		eval.evaluateModel(model, newValidataData);
+		Evaluation eval = new Evaluation(data);
+		eval.evaluateModel(model, validataData);
 		File outputs = new File(evaluationFile);
-		BufferedWriter out = new BufferedWriter(new FileWriter(outputs,false));
+		BufferedWriter out = new BufferedWriter(new FileWriter(outputs));
 		String ans =eval.toMatrixString("result:");
 		out.write(ans);
 		out.newLine();
@@ -85,16 +81,16 @@ public class TrainingModel {
 		out.newLine();
 		out.write("fMeasure:"+ eval.fMeasure(1));
 		out.newLine();
+		out.flush();
 		out.close();
 	}
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		TrainingModel aModel = new TrainingModel();
-		int T = 50;
-		String path = Contants.bak_write_filepath;
-		String files[]={"sameple_"+T+"_"+"filter_testing.csv","sameple_"+T+"_"+"filter_validata.csv","model.txt"};
+		String path = Contants.write_filepath;
+		String f[] = {"finalTrainData.arff","hascopy_finalTrainDataTwo.arff","hascopy_finalTrainDataThree.arff","hascopy_finalTrainDataFour.arff","hascopy_finalTrainDataFive.arff"};
+		String files[]={f[4],"validata.arff","model_5.txt"};
 		for(int i=0;i<files.length;i++) files[i] = path+files[i];
 		aModel.traingRandomForest(files[0],files[1],files[2]);	
-
 	}
 }

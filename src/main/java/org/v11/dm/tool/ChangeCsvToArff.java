@@ -29,7 +29,7 @@ public class ChangeCsvToArff {
 	}
 	
 	public static void main(String[] args) {
-		String name = "intersection_data18_clas19";
+		String name = "finalTrainData";
 		String csvFileName =Contants.write_filepath+name+".csv";
 		String arffFileName =Contants.write_filepath+name+".arff";
 		ChangeCsvToArff.changeCsvToArff("ali", csvFileName, arffFileName);

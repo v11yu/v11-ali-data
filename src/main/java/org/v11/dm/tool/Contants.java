@@ -42,7 +42,7 @@ public class Contants {
 		User user = new User();
 		if(user_attri_name == null){
 			user_attri_name = str+getls(user.slideWin.length,"u_slide")
-					+get("u_avgBuy");
+					+"u_avgBuy";
 		}
 		return user_attri_name;
 	}
@@ -60,8 +60,9 @@ public class Contants {
 	 * workspace path
 	 */
 	public static final String home_file = "C://Users//v11/Desktop//2015阿里大数据//";
+	public static final String mac_file ="/Users/v11/Documents/ali-data/";
 	public static final String of_file = "C://Users//damao//Desktop//ali-data//";
-	public static final String file = of_file;
+	public static final String file = mac_file;
 	/*
 	 * filepath
 	 */
