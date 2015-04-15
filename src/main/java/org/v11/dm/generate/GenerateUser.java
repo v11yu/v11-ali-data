@@ -16,6 +16,8 @@ import org.v11.dm.entity.UTPair;
 import org.v11.dm.entity.User;
 import org.v11.dm.method.UTPairMethod;
 import org.v11.dm.method.UserMethod;
+import org.v11.dm.method.user.UAvgBuyMethod;
+import org.v11.dm.method.user.UslideWinMethod;
 import org.v11.dm.method.utp.AvgBuyMethod;
 import org.v11.dm.method.utp.HoursMethod;
 import org.v11.dm.method.utp.IntervalMethod;
@@ -46,15 +48,13 @@ public class GenerateUser {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
-			out.write(Contants.getAttributeName());
+			out.write(Contants.getUserAttributeName());
 			out.newLine();
 			String preUtp = null;
 			String str ;
 			int cnt = 0;
 			User uInfo = null;
 			TmpInfo curInfo = new TmpInfo();
-			int outCnt = 0;
-			int delCnt = 0;
 			while((str=reader.readLine())!=null){
 				if(cnt++ == 0) continue;
 				if(cnt % 100000 == 0) System.out.println("read.."+cnt);
@@ -77,8 +77,6 @@ public class GenerateUser {
 			uInfo = sta(curInfo);
 			out.write(preUtp+","+uInfo);
 			out.newLine();
-			System.out.println("print delete count:"+delCnt);
-			System.out.println("print add count:"+outCnt);
 			reader.close();
 			out.flush();
 			out.close();
@@ -89,7 +87,8 @@ public class GenerateUser {
 	User sta(TmpInfo tmpInfo){
 		User uinfo = new User();
 		Collections.sort(tmpInfo.ls);
-		UserMethod methods[] = {};
+		UserMethod methods[] = {new UAvgBuyMethod(),
+				new UslideWinMethod()};
 		for(UserMethod method : methods){
 			method.setAttribute(tmpInfo, uinfo);
 		}

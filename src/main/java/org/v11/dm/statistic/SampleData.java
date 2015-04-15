@@ -89,7 +89,7 @@ public class SampleData {
 		String files[] = new String[5];
 		SampleData sample = new SampleData();
 		for(int i =0;i<5;i++){
-			files[i] = "merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+			files[i] = "intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
 			sample.sample(files[i],false);
 		}
 		

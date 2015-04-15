@@ -26,7 +26,7 @@ public class UslideWinMethod implements UserMethod{
 					if(r.dis >=i*24 && r.dis<(i+1)*24 && r.op == 3){
 						st.add(r.tid);
 					}
-					if(r.dis >=(i+1)*24 && r.dis<(i+1)*24 && st.contains(r.tid)){
+					if(r.dis >=(i+1)*24 && r.dis<(i+t+1)*24 && st.contains(r.tid)){
 						cnt ++;
 					}
 				}
@@ -35,8 +35,12 @@ public class UslideWinMethod implements UserMethod{
 					c++;
 				}
 			}
-			if(c!=0)u.slideWin[k++] = sum/c;
+			if(c!=0){
+				u.slideWin[k++] = sum/c;
+				System.out.println(sum/c);
+			}
 		}
+		
 	}
 
 }

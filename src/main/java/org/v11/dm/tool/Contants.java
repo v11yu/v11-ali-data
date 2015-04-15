@@ -1,9 +1,11 @@
 package org.v11.dm.tool;
 
 import org.v11.dm.entity.UTPair;
+import org.v11.dm.entity.User;
 
 public class Contants {
 	private static String attri_name = null;
+	private static String user_attri_name = null;
 	private static String get(String name){return name+",";}
 	private static String getls(int len,String name){
 		int cnt = 0;
@@ -34,6 +36,15 @@ public class Contants {
 					+"clas";
 		}
 		return attri_name;		
+	}
+	public static String getUserAttributeName(){
+		String str = "uid,";
+		User user = new User();
+		if(user_attri_name == null){
+			user_attri_name = str+getls(user.slideWin.length,"u_slide")
+					+get("u_avgBuy");
+		}
+		return user_attri_name;
 	}
 	/*
 	 * time

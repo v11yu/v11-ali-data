@@ -4,7 +4,14 @@ public class User {
 	static public int SlideWins[] ={3*24,5*24,7*24};
 	public double avgBuy;
 	public double slideWin[] = new double [SlideWins.length];
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuilder str = new StringBuilder();
+		str = a2s(slideWin)
+		.append(avgBuy);
+		return str.toString();
+	}
 	private StringBuilder aa2s(int a[][]){
 		StringBuilder str = new StringBuilder();
 		for(int i=0;i<a.length;i++){

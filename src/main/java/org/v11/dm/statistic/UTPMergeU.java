@@ -60,13 +60,17 @@ public class UTPMergeU {
 		for(int i=0;i<ufiles.length;i++){
 			ufiles[i] = "del_ufeature_"+(15+i)+"_div.csv";
 		}
+		String ufiles2[] = new String[N];
+		for(int i=0;i<ufiles2.length;i++){
+			ufiles2[i] = "udata18_clas19.csv";
+		}
 		String utfiles[] = new String[N];
 		for(int i=0;i<ufiles.length;i++){
-			utfiles[i] = "intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+			utfiles[i] = "merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
 		}
 		for(int i=0;i<N;i++){
 			UTPMergeU m = new UTPMergeU();
-			m.merge(utfiles[i], ufiles[i]);
+			m.merge(utfiles[i], ufiles2[i]);
 		}
 	}
 }
