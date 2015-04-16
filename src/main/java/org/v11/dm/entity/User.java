@@ -1,7 +1,7 @@
 package org.v11.dm.entity;
 
 public class User {
-	static public int SlideWins[] ={3*24,5*24,7*24};
+	static public int SlideWins[] ={1,3,5,7};
 	public double avgBuy;
 	public double slideWin[] = new double [SlideWins.length];
 	@Override
