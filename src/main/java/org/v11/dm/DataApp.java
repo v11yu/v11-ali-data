@@ -11,9 +11,17 @@ import org.v11.dm.tool.Contants;
  *
  */
 public class DataApp {
+	/**
+	 * 
+	 * @param train 训练集文件名
+	 * @param validata
+	 * @param submit
+	 * @param T
+	 */
 	public void work(String train,String validata,String submit,int T){
 		//first random data from train
-		String path = Contants.write_filepath;
+		
+		String path = Contants.write_filepath; // 设置你的目录
 		String files[] = new String[2+T];
 		files[0] = train;
 		files[1] = validata;

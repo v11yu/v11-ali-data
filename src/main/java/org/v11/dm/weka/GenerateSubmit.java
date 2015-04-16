@@ -4,9 +4,14 @@ import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.FileUtil;
 
 public class GenerateSubmit {
-	public void work(String source){
-		FileUtil in = new FileUtil(Contants.write_filepath+source, "in");
-		FileUtil out = new FileUtil(Contants.write_filepath+"submit_"+source,"out");
+	/**
+	 * 
+	 * @param source filename
+	 * @param path filepath
+	 */
+	public void work(String source,String path){
+		FileUtil in = new FileUtil(path+source, "in");
+		FileUtil out = new FileUtil(path+"submit_"+source,"out");
 		String str;
 		int cnt = 0;
 		int correct = 0;
@@ -31,7 +36,5 @@ public class GenerateSubmit {
 		System.out.println("incorrect count:"+incorrect);
 	
 	}
-	public static void main(String[] args) {
-		new GenerateSubmit().work("result_5.csv");
-	}
+
 }
