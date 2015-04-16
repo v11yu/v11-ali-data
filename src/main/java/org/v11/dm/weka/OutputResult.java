@@ -40,11 +40,14 @@ public class OutputResult {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		int T = 50;
+		//int T = 50;
+		int k = 1;
 		OutputResult aModel = new OutputResult();
 		String path = Contants.write_filepath;
-		String f[] = {"finalTrainData.arff","hascopy_finalTrainDataTwo.arff","hascopy_finalTrainDataThree.arff","hascopy_finalTrainDataFour.arff","hascopy_finalTrainDataFive.arff"};
-		String files[]={f[4],"submit.arff","result_5.csv"};
+		String name = "train";
+		if(k>1) name = name +k+".arff";
+		else name = name +".arff";
+		String files[]={name,"submit.arff","result_"+k+".csv"};
 		for(int i=0;i<files.length;i++) files[i] = path+files[i];
 		aModel.classifyingInstances(files[0],files[1],files[2]);
 

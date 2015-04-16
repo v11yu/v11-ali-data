@@ -86,10 +86,13 @@ public class TrainingModel {
 	}
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		int k =1;
 		TrainingModel aModel = new TrainingModel();
 		String path = Contants.write_filepath;
-		String f[] = {"finalTrainData.arff","hascopy_finalTrainDataTwo.arff","hascopy_finalTrainDataThree.arff","hascopy_finalTrainDataFour.arff","hascopy_finalTrainDataFive.arff"};
-		String files[]={f[4],"validata.arff","model_5.txt"};
+		String name = "train";
+		if(k>1) name = name +k+".arff";
+		else name = name +".arff";
+		String files[]={name,"submit.arff","result_"+k+".csv"};
 		for(int i=0;i<files.length;i++) files[i] = path+files[i];
 		aModel.traingRandomForest(files[0],files[1],files[2]);	
 	}
