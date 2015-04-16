@@ -37,7 +37,6 @@ public class UslideWinMethod implements UserMethod{
 			}
 			if(c!=0){
 				u.slideWin[k++] = sum/c;
-				System.out.println(sum/c);
 			}
 		}
 		

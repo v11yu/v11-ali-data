@@ -12,7 +12,7 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 public class OutputResult {
 	public void classifyingInstances(String testDateFile,
-			String validataFile, String resultFile) throws Exception {
+			String submitFile, String resultFile) throws Exception {
 		Instances data = DataSource.read(testDateFile);
 		data.setClassIndex(data.numAttributes() - 1);
 		data.deleteAttributeAt(0);
@@ -20,19 +20,24 @@ public class OutputResult {
 		Classifier model = new RandomForest(); // new instance of tree
 		model.buildClassifier(data); // build classifier
 
-		Instances validata = DataSource.read(validataFile);
-		validata.setClassIndex(validata.numAttributes() - 1);
-		Instances outputData = new Instances(validata);
-		validata.deleteAttributeAt(0);
-		validata.deleteAttributeAt(1);
+		Instances submitData = DataSource.read(submitFile);
+		submitData.setClassIndex(submitData.numAttributes() - 1);
+		Instances outputData = new Instances(submitData);
+		submitData.deleteAttributeAt(0);
+		submitData.deleteAttributeAt(1);
 																		// filter
 		// create copy
 		//Instances labeled = new Instances(newunlabeled);
 		// label instances
-		for (int i = 0; i < validata.numInstances(); i++) {
-			double clsLabel = model.classifyInstance(validata.instance(i));
+		int cnt1 = 0,cnt2=0;
+		for (int i = 0; i < submitData.numInstances(); i++) {
+			double clsLabel = model.classifyInstance(submitData.instance(i));
+			System.out.println(clsLabel);
+			if(clsLabel >0.9) cnt1++;
+			else cnt2++;
 			outputData.instance(i).setClassValue(clsLabel);
 		}
+		System.out.println(cnt1+" "+cnt2);
 
 		// save newly labeled data
 		DataSink.write(resultFile, outputData);
@@ -42,13 +47,12 @@ public class OutputResult {
 		// TODO Auto-generated method stub
 		//int T = 50;
 		int k = 1;
-		OutputResult aModel = new OutputResult();
-		String path = Contants.write_filepath;
-		String name = "train";
-		if(k>1) name = name +k+".arff";
-		else name = name +".arff";
-		String files[]={name,"submit.arff","result_"+k+".csv"};
+		String path = Contants.daisy_write_filepath;
+
+		String files[]={"sameple_50_intersection_filter_testing.csv","sameple_50_intersection_filter_validata.csv","result_"+k+".csv"};
 		for(int i=0;i<files.length;i++) files[i] = path+files[i];
+		OutputResult aModel = new OutputResult();
+		
 		aModel.classifyingInstances(files[0],files[1],files[2]);
 
 	}

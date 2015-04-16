@@ -24,7 +24,7 @@ public class UTPairAPP {
 	}
 	public static void main(String[] args) {
 		long pre = new Date().getTime();
-		generateN(18);
+		generateN(19);
 		System.out.println("use time:"+(new Date().getTime() - pre)/1000);
 	}
 }
