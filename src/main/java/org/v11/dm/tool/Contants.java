@@ -44,10 +44,10 @@ public class Contants {
 		User user = new User();
 		if(user_attri_name == null){
 			user_attri_name = str
-					+getls(user.BuyConversionRate.length*User.BuyConversionRateLength,"u_buyConversionRate")
-					//+getls(user.slideWin.length,"u_slide")
-					+getls(user.LastActionSumRate.length*User.LastActionSumRateLen,"u_lastActionSumRate")
-					+getls(user.Buy_n_count.length,"u_buyCount")
+					//+getls(user.BuyConversionRate.length*User.BuyConversionRateLength,"u_buyConversionRate")
+					+getls(user.slideWin.length,"u_slide")
+					//+getls(user.LastActionSumRate.length*User.LastActionSumRateLen,"u_lastActionSumRate")
+					//+getls(user.Buy_n_count.length,"u_buyCount")
 					+"u_avgBuy";
 		}
 		return user_attri_name;

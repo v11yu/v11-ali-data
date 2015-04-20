@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import org.v11.dm.entity.Record;
 
 public class DeleteRecord {
-	String path = "C://Users//damao//Desktop//ali-data//user feature//";
+	String path = Contants.bak_write_filepath;
 	public void filterRecord(String source){
 		File file = new File(path+source);
 		File outfile = new File(path+"del_"+source);
@@ -45,7 +45,7 @@ public class DeleteRecord {
 	}
 	public static void main(String[] args) {
 		String paths[] = {"ufeature_train_15_div.csv","ufeature_train_16_div.csv","ufeature_train_17_div.csv",
-				"ufeature_validate_div.csv","ufeature_submit_div.csv"};
+				"ufeature_train_18_div.csv","ufeature_train_19_div.csv"};
 		DeleteRecord dr = new DeleteRecord();
 		for(String path:paths){
 			dr.filterRecord(path);

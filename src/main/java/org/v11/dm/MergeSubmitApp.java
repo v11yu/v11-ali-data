@@ -38,7 +38,7 @@ public class MergeSubmitApp {
 	}
 	public static void main(String[] args) {
 		//new MergeSubmitApp().merge(5);
-		String ls[] = {"1.csv","2.csv"};
+		String ls[] = {"1.csv","2.csv","3.csv","4.csv"};
 		new MergeSubmitApp().merge(ls);
 	}
 }

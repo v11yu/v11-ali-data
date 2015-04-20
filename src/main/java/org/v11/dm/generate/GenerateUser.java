@@ -92,7 +92,7 @@ public class GenerateUser {
 		Collections.sort(tmpInfo.ls);
 		UserMethod methods[] = {
 				new UAvgBuyMethod()
-				//,new UslideWinMethod()
+				,new UslideWinMethod()
 				,new UBuyConversionRateMethod()
 				,new UBuyCountMethod()
 				,new ULastActionSumRateMethod()

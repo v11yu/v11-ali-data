@@ -33,6 +33,7 @@ public class UTPMergeU {
 	public void merge(String utpfile,String ufile){
 		initUmap(ufile);
 		File file = new File(OUT+utpfile);
+		
 		File outfile = new File(OUT+"merge_"+utpfile);
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -55,10 +56,10 @@ public class UTPMergeU {
 	}
 	public static void main(String[] args) {
 		int N = 5;
-//		String ufiles[] = new String[N];
-//		for(int i=0;i<ufiles.length;i++){
-//			ufiles[i] = "del_ufeature_"+(15+i)+"_div.csv";
-//		}
+		String ufiles[] = new String[N];
+		for(int i=0;i<ufiles.length;i++){
+			ufiles[i] = "del_ufeature_train_"+(15+i)+"_div.csv";
+		}
 		String ufiles2[] = new String[N];
 		for(int i=0;i<ufiles2.length;i++){
 			ufiles2[i] = "udata18_clas19.csv";
@@ -67,9 +68,14 @@ public class UTPMergeU {
 		for(int i=0;i<utfiles.length;i++){
 			utfiles[i] = "intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
 		}
+		String utfiles2[] = new String[N];
+		for(int i=0;i<utfiles2.length;i++){
+			utfiles2[i] = "merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+		}
 		for(int i=0;i<N;i++){
 			UTPMergeU m = new UTPMergeU();
-			m.merge(utfiles[i], ufiles2[i]);
+			m.merge(utfiles[i], ufiles[i]);
+			m.merge(utfiles2[i], ufiles2[i]);
 		}
 	}
 }

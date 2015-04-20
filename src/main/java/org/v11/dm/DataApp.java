@@ -61,6 +61,6 @@ public class DataApp {
 		work("train","validata","submit",T);
 	}
 	public static void main(String[] args) {
-		new DataApp().work(5);
+		new DataApp().work(20);
 	}
 }

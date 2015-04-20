@@ -63,16 +63,23 @@ public class Record implements Comparable<Record>{
 //			return 0;
 //		}
 //	}
+//	@Override
+//	public int compareTo(Record o) {
+//		// sort by tid,then uid
+//		if(this.tid>o.tid) return 1;
+//		else if(this.tid<o.tid) return -1;
+//		else{
+//			if(this.uid>o.uid) return 1;
+//			else if(this.uid<o.uid) return -1;
+//			return 0;
+//		}
+//	}
 	@Override
 	public int compareTo(Record o) {
-		// sort by tid,then uid
-		if(this.tid>o.tid) return 1;
-		else if(this.tid<o.tid) return -1;
-		else{
-			if(this.uid>o.uid) return 1;
-			else if(this.uid<o.uid) return -1;
-			return 0;
-		}
+		// sort by category
+		if(this.ity>o.ity) return 1;
+		else if(this.ity<o.ity) return -1;
+		return 0;
 	}
 	
 	

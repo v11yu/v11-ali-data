@@ -36,5 +36,7 @@ public class TrainingModelAPP {
 		for(int i=1;i<=5;i++){
 			app.work(i);
 		}
+		app.work(15);
+		app.work(20);
 	}
 }

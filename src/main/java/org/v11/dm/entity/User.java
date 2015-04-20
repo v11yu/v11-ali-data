@@ -1,7 +1,7 @@
 package org.v11.dm.entity;
 
 public class User {
-	final static public int SlideWins[] ={1,3,5,7};
+	final static public int SlideWins[] ={3*24,5*24,7*24};
 	static public int BuyConversionRate[]={3*24,7*24,30*24};//3,7,30 days:buy conversion rate
 	static public int LastActionSumRate[] = {1*24,3*24,7*24};//n day,action[i]_sum(n days)/action[i]_sum(30 days).
 	static public int Buy_n_count[]={1*24,3*24,7*24};//只看n天的购买数量
@@ -16,10 +16,11 @@ public class User {
 	public String toString() {
 		// TODO Auto-generated method stub
 		StringBuilder str = new StringBuilder();
-		str = a2s(buyConversionRate)
-		//.append(a2s(slideWin))
-		.append(a2s(lastActionSumRate))
-		.append(a2s(buyCount))
+		str = str
+		//.append(a2s(buyConversionRate))
+		.append(a2s(slideWin))
+		//.append(a2s(lastActionSumRate))
+		//.append(a2s(buyCount))
 		.append(avgBuy);
 		return str.toString();
 	}

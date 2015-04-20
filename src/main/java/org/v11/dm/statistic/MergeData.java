@@ -43,9 +43,11 @@ public class MergeData {
 	}
 	public static void main(String[] args) {
 		String files[] = new String[3];
-		for(int i=1;i<=3;i++){
-			files[i-1] = "sameple_100_merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+		for(int i=0;i<3;i++){
+			//files[i] = "sameple_100_merge_merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+			files[i] = "sameple_100_merge_merge_intersection_data"+(14+i+1)+"_clas"+(15+i+1)+".csv";
 		}
-		new MergeData().merge(files, "finalTrainData.csv");
+		//new MergeData().merge(files, "train15_17.csv");
+		new MergeData().merge(files, "train16_18.csv");
 	}
 }

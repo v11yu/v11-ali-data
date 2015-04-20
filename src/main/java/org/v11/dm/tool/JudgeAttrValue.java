@@ -15,7 +15,7 @@ public class JudgeAttrValue {
 		String u = "udata18_clas19.csv";
 		String t = "tdata18_clas19.csv";
 		String ut= "data14_clas15.csv";
-		String file = Contants.write_filepath+"validata.csv";
+		String file = Contants.write_filepath+"train15_17.csv";
 		FileUtil in = new FileUtil(file,"in");
 		System.out.println(in.readLine().split(",").length);
 		System.out.println(in.readLine().split(",").length);
