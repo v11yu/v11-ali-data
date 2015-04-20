@@ -25,7 +25,7 @@ public class UTPair {
 		.append(a2s(intervals))
 		.append(aa2s(lasVsSum))
 		.append(a2s(lastAction))
-		.append(a2s(lastDupAction))
+		//.append(a2s(lastDupAction))
 		.append(isBuy).append(',')
 		.append(isDupBuy).append(',')
 		.append(hasActionAfterBuy).append(',')

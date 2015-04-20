@@ -15,8 +15,8 @@ import org.v11.dm.entity.Record;
 public class SortRecord {
 	
 	public void sortRecord(){
-		File file = new File("D://"+Contants.record_filename);
-		File outfile = new File("D://"+"urecord.csv");
+		File file = new File(Contants.read_filepath+Contants.record_filename);
+		File outfile = new File(Contants.read_filepath+"item_record.csv");
 		List<Record> ls = new ArrayList<Record>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));

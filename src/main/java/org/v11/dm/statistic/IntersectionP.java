@@ -49,6 +49,7 @@ public class IntersectionP {
 			}
 			System.out.println("P buy count:"+has);
 			reader.close();
+			sourceFile.delete();
 			out.flush();
 			out.close();
 		}catch(Exception e){

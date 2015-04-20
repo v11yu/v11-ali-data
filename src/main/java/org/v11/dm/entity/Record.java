@@ -52,16 +52,29 @@ public class Record implements Comparable<Record>{
 		.append(',').append(geo).append(',').append(ity).append(',').append(dis);
 		return str.toString();
 	}
+//	@Override
+//	public int compareTo(Record o) {
+//		// sort by uid,then tid
+//		if(this.uid>o.uid) return 1;
+//		else if(this.uid<o.uid) return -1;
+//		else{
+//			if(this.tid>o.tid) return 1;
+//			else if(this.tid<o.tid) return -1;
+//			return 0;
+//		}
+//	}
 	@Override
 	public int compareTo(Record o) {
-		// TODO Auto-generated method stub
-		if(this.uid>o.uid) return 1;
-		else if(this.uid<o.uid) return -1;
+		// sort by tid,then uid
+		if(this.tid>o.tid) return 1;
+		else if(this.tid<o.tid) return -1;
 		else{
-			if(this.tid>o.tid) return 1;
-			else if(this.tid<o.tid) return -1;
+			if(this.uid>o.uid) return 1;
+			else if(this.uid<o.uid) return -1;
 			return 0;
 		}
 	}
+	
+	
 	
 }
