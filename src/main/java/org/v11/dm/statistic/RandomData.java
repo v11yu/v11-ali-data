@@ -4,7 +4,11 @@ import java.util.Random;
 
 import org.v11.dm.tool.Contants;
 import org.v11.dm.tool.FileUtil;
-
+/**
+ * 打乱数据，并复制正样本倍数
+ * @author v11
+ *
+ */
 public class RandomData {
 	/**
 	 * 

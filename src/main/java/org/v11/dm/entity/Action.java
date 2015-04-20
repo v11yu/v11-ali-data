@@ -7,7 +7,7 @@ import java.util.List;
 public class Action implements Comparable<Action>{
 	public int dis;
 	public int op;
-	public long tid;
+	public long tid;//可以是tid或者uid，看是谁使用。item－uid，user－tid
 	public Action(int dis,int op){this.dis = dis;this.op = op;}
 	public Action(int dis,int op,long tid){this.dis = dis;this.op = op;this.tid=tid;}
 	@Override

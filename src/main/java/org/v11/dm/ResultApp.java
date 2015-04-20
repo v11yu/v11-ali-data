@@ -1,5 +1,7 @@
 package org.v11.dm;
 
+import java.io.File;
+
 import org.v11.dm.tool.Contants;
 import org.v11.dm.weka.GenerateSubmit;
 import org.v11.dm.weka.OutputResult;
@@ -15,10 +17,13 @@ public class ResultApp {
 				name = name + k + ".arff";
 			else
 				name = name + ".arff";
+			File submitDir = new File(path+"submit-data");
+			
+			if(!submitDir.exists()) submitDir.mkdir();
 			String files[]={name,"submit.arff","submit-data/result_"+k+".csv"};
 			for (int i = 0; i < files.length; i++)
 				files[i] = path + files[i];
-			aModel.classifyingInstances(files[0],files[1],files[2]);
+			aModel.classifyingInstances(files[0],files[1],files[2],null);
 			System.out.println(k+" finished..");
 			new GenerateSubmit().work("result_"+k+".csv",path+"submit-data/");
 		}catch(Exception e){

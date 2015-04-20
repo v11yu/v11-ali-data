@@ -6,7 +6,7 @@ import org.v11.dm.entity.UTPair;
 import org.v11.dm.method.UTPairMethod;
 
 public class AvgBuyMethod implements UTPairMethod{
-
+	static int INF = 100000;
 	@Override
 	public void setAttribute(TmpInfo tmpInfo, UTPair utp) {
 		// TODO Auto-generated method stub
@@ -22,7 +22,7 @@ public class AvgBuyMethod implements UTPairMethod{
 			}
 		}
 		if(cnt!=0) utp.avgBuy /=cnt;
-		else utp.avgBuy = 0;
+		else utp.avgBuy = INF;
 	}
 
 }

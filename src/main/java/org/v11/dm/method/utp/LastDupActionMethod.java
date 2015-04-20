@@ -6,12 +6,12 @@ import org.v11.dm.entity.UTPair;
 import org.v11.dm.method.UTPairMethod;
 
 public class LastDupActionMethod implements UTPairMethod{
-
+	static int INF = 1000000;
 	@Override
 	public void setAttribute(TmpInfo tmpInfo, UTPair utp) {
 		int cnt=0;
 		int mk[] = new int[utp.lastDupAction.length];
-		for(int i=0;i<utp.lastDupAction.length;i++) utp.lastDupAction[i] = -1;
+		for(int i=0;i<utp.lastDupAction.length;i++) utp.lastDupAction[i] =INF;
 		for(Action r:tmpInfo.ls){
 			if(mk[r.op] == 0){
 				mk[r.op] = 1;

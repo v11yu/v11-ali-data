@@ -6,7 +6,7 @@ import org.v11.dm.entity.User;
 import org.v11.dm.method.UserMethod;
 
 public class UAvgBuyMethod implements UserMethod{
-
+	static int INF = 100000;
 	@Override
 	public void setAttribute(TmpInfo tmpInfo, User u) {
 		// TODO Auto-generated method stub
@@ -22,7 +22,7 @@ public class UAvgBuyMethod implements UserMethod{
 			}
 		}
 		if(cnt!=0) u.avgBuy /=cnt;
-		else u.avgBuy = 0;
+		else u.avgBuy = INF;
 	}
 
 }

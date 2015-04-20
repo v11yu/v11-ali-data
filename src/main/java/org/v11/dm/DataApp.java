@@ -22,14 +22,33 @@ public class DataApp {
 		//first random data from train
 		
 		String path = Contants.write_filepath; // 设置你的目录
-		String files[] = new String[2+T];
+		String files[] = new String[3+T];
 		files[0] = train;
 		files[1] = validata;
 		files[2] = submit;
 		RandomData rd = new RandomData();
-		for(int i=2;i<=T;i++){
+		for(int i=1;i<=T;i++){
 			rd.randomData(path+train+".csv", path+train+i+".csv", i);
-			files[i+1] = train+i;
+			files[i+2] = train+i;
+		}
+		for (int i = 0; i < files.length; i++) {
+			String name = files[i];
+			String csvFileName = Contants.write_filepath + name + ".csv";
+			String arffFileName = Contants.write_filepath + name + ".arff";
+			ChangeCsvToArff.changeCsvToArff("ali", csvFileName, arffFileName);
+		}
+	}
+	public void work_single(){
+		String path = Contants.write_filepath; // 设置你的目录
+		int v[] ={15,20};
+		String files[] = new String[3+v.length];
+		files[0] = "train";
+		files[1] = "validata";
+		files[2] = "submit";
+		RandomData rd = new RandomData();
+		for(int i=0;i<v.length;i++){
+			rd.randomData(path+"train"+".csv", path+"train"+v[i]+".csv", v[i]);
+			files[i+3] = "train"+v[i];
 		}
 		for (int i = 0; i < files.length; i++) {
 			String name = files[i];
@@ -42,6 +61,6 @@ public class DataApp {
 		work("train","validata","submit",T);
 	}
 	public static void main(String[] args) {
-		new DataApp().work(7);
+		new DataApp().work(5);
 	}
 }

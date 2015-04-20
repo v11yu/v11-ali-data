@@ -11,12 +11,12 @@ import org.v11.dm.method.UTPairMethod;
  * @author v11
  */
 public class LastActionMethod implements UTPairMethod{
-
+	static int INF = 1000000;
 	@Override
 	public void setAttribute(TmpInfo tmpInfo, UTPair utp) {
 		int cnt=0;
 		boolean mk[] = new boolean[utp.lastAction.length];
-		for(int i=0;i<utp.lastAction.length;i++) utp.lastAction[i] = -1;
+		for(int i=0;i<utp.lastAction.length;i++) utp.lastAction[i] = INF;
 		for(Action r:tmpInfo.ls){
 			if(!mk[r.op]){
 				cnt++;

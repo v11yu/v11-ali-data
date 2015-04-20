@@ -1,13 +1,14 @@
 package org.v11.dm.entity;
 
-import org.v11.dm.tool.TimeTool;
+import java.util.ArrayList;
 
 /**
- * item information
- * 
+ * category information<p/>
+ * then map to item
  * @author v11
+ *
  */
-public class Item {
+public class Category {
 	static public int BuyConversionRate[]={3*24,7*24};//3,7,30 days:buy conversion rate
 	static public int LastActionSumRate[] = {3*24,7*24};//n day,action[i]_sum(n days)/action[i]_sum(30 days).
 	static public int Buy_n_count[]={1*24,3*24,7*24};//只看n天的购买数量
