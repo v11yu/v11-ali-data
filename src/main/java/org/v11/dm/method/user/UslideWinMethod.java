@@ -21,17 +21,20 @@ public class UslideWinMethod implements UserMethod{
 			double sum = 0;
 			for(int i=0;i<30;i++){
 				int cnt = 0;
+				int cnt1 = 0;
 				st.clear();
-				for(Action r:tmpInfo.ls){
-					if(r.dis >=i*24 && r.dis<(i+1)*24 && r.op == 3){
-						st.add(r.tid);
-					}
-					if(r.dis >=(i+1)*24 && r.dis<(i+t+1)*24 && st.contains(r.tid)){
+				for(int j = tmpInfo.ls.size()-1;j>=0;j--){
+					Action r = tmpInfo.ls.get(j);
+					if(r.dis >=i*24 && r.dis<(i+1)*24 && r.op == 3&& st.contains(r.tid)){
 						cnt ++;
 					}
+					if(r.dis >=(i+1)*24 && r.dis<(i+t+1)*24 ){
+						st.add(r.tid);
+						cnt1++;
+					}
 				}
-				if(cnt!=0){
-					sum += (1.0*st.size()/cnt);
+				if(cnt1!=0){
+					sum += (1.0*cnt/st.size());
 					c++;
 				}
 			}

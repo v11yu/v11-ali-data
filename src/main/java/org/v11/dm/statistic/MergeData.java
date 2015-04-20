@@ -44,7 +44,7 @@ public class MergeData {
 	public static void main(String[] args) {
 		String files[] = new String[3];
 		for(int i=0;i<3;i++){
-			files[i] = "sameple_100_merge_merge_intersection_data"+(14+i)+"_clas"+(15+i)+".csv";
+			files[i] = "sameple_100_merge_merge_intersection_data"+(15+i)+"_clas"+(16+i)+".csv";
 		}
 		new MergeData().merge(files, "finalTrainData.csv");
 	}
